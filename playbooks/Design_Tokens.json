@@ -1,0 +1,735 @@
+{
+  "$schema": "https://m3.material.io/foundations/design-tokens",
+  "metadata": {
+    "name": "BookHood Design Tokens",
+    "version": "1.0.0",
+    "brand": {
+      "mission": "Connect readers to exchange books locally, reduce costs, and foster community.",
+      "personality": [
+        "trustworthy",
+        "friendly",
+        "energetic"
+      ]
+    },
+    "guidelines": {
+      "color_usage_rule": "60-30-10",
+      "distribution": {
+        "base_surfaces_percent": 60,
+        "support_color_percent": 30,
+        "accent_color_percent": 10
+      },
+      "accessibility": {
+        "wcag_level": "AA (min) / AAA (target for key text)",
+        "text_contrast_min": "4.5:1 (AA) / 7:1 (AAA)",
+        "large_text_contrast_min": "3:1 (AA)",
+        "non_text_contrast_min": "3:1 for UI graphics & controls",
+        "references": [
+          "https://webaim.org/resources/contrastchecker/",
+          "https://www.w3.org/TR/WCAG22/#contrast-minimum",
+          "https://webaim.org/standards/wcag/checklist#sc1.4.11"
+        ]
+      }
+    }
+  },
+  "global": {
+    "typography": {
+      "families": {
+        "ui_primary": "\"Inter\", system-ui, -apple-system, \"Segoe UI\", Roboto, Arial, sans-serif",
+        "longform_optional": "\"Literata\", Georgia, \"Times New Roman\", serif"
+      },
+      "roles": {
+        "display-large": {
+          "fontFamily": "ui_primary",
+          "fontSize": 32,
+          "lineHeight": 40,
+          "fontWeight": 700,
+          "letterSpacing": 0
+        },
+        "display-medium": {
+          "fontFamily": "ui_primary",
+          "fontSize": 28,
+          "lineHeight": 36,
+          "fontWeight": 700,
+          "letterSpacing": 0
+        },
+        "headline-large": {
+          "fontFamily": "ui_primary",
+          "fontSize": 24,
+          "lineHeight": 32,
+          "fontWeight": 600,
+          "letterSpacing": 0
+        },
+        "headline-medium": {
+          "fontFamily": "ui_primary",
+          "fontSize": 20,
+          "lineHeight": 28,
+          "fontWeight": 600,
+          "letterSpacing": 0
+        },
+        "title-large": {
+          "fontFamily": "ui_primary",
+          "fontSize": 18,
+          "lineHeight": 24,
+          "fontWeight": 600,
+          "letterSpacing": 0
+        },
+        "title-medium": {
+          "fontFamily": "ui_primary",
+          "fontSize": 16,
+          "lineHeight": 22,
+          "fontWeight": 600,
+          "letterSpacing": 0.1
+        },
+        "title-small": {
+          "fontFamily": "ui_primary",
+          "fontSize": 14,
+          "lineHeight": 20,
+          "fontWeight": 600,
+          "letterSpacing": 0.1
+        },
+        "body-large": {
+          "fontFamily": "ui_primary",
+          "fontSize": 16,
+          "lineHeight": 24,
+          "fontWeight": 400,
+          "letterSpacing": 0.2
+        },
+        "body-medium": {
+          "fontFamily": "ui_primary",
+          "fontSize": 14,
+          "lineHeight": 20,
+          "fontWeight": 400,
+          "letterSpacing": 0.2
+        },
+        "body-small": {
+          "fontFamily": "ui_primary",
+          "fontSize": 12,
+          "lineHeight": 16,
+          "fontWeight": 400,
+          "letterSpacing": 0.2
+        },
+        "label-large": {
+          "fontFamily": "ui_primary",
+          "fontSize": 14,
+          "lineHeight": 20,
+          "fontWeight": 600,
+          "letterSpacing": 0.1
+        },
+        "label-medium": {
+          "fontFamily": "ui_primary",
+          "fontSize": 12,
+          "lineHeight": 16,
+          "fontWeight": 600,
+          "letterSpacing": 0.5
+        },
+        "label-small": {
+          "fontFamily": "ui_primary",
+          "fontSize": 11,
+          "lineHeight": 16,
+          "fontWeight": 600,
+          "letterSpacing": 0.5
+        }
+      },
+      "notes": "Type roles follow Material 3 scale: display, headline, title, body, label."
+    },
+    "spacing": {
+      "unit": 4,
+      "scale": [
+        0,
+        2,
+        4,
+        6,
+        8,
+        10,
+        12,
+        16,
+        20,
+        24,
+        32,
+        40,
+        48,
+        56,
+        64
+      ]
+    },
+    "radii": {
+      "xs": 4,
+      "sm": 8,
+      "md": 12,
+      "lg": 16,
+      "xl": 24,
+      "pill": 999
+    },
+    "elevation": {
+      "levels": {
+        "level0": {
+          "elevation": 0,
+          "shadow": "none"
+        },
+        "level1": {
+          "elevation": 1,
+          "shadow": "0 1px 2px rgba(0,0,0,0.08)"
+        },
+        "level2": {
+          "elevation": 3,
+          "shadow": "0 2px 6px rgba(0,0,0,0.10)"
+        },
+        "level3": {
+          "elevation": 6,
+          "shadow": "0 6px 12px rgba(0,0,0,0.12)"
+        },
+        "level4": {
+          "elevation": 8,
+          "shadow": "0 8px 16px rgba(0,0,0,0.14)"
+        },
+        "level5": {
+          "elevation": 12,
+          "shadow": "0 12px 24px rgba(0,0,0,0.16)"
+        }
+      },
+      "notes": "Elevation levels map to Material 3’s guidance; platforms may substitute tonal elevation or platform-native shadows."
+    },
+    "states": {
+      "opacity": {
+        "hover": 0.08,
+        "focus": 0.1,
+        "pressed": 0.1,
+        "dragged": 0.16,
+        "disabled_content": 0.38,
+        "disabled_container": 0.12
+      },
+      "focus_ring": {
+        "width": 2,
+        "style": "solid",
+        "color_role": "primary",
+        "outline_offset_px": 2
+      }
+    },
+    "density": {
+      "scale": [
+        "comfortable",
+        "default",
+        "compact"
+      ],
+      "touch_target_min_dp": 48,
+      "notes": "Use 48×48dp min touch targets; increase spacing in comfortable mode."
+    },
+    "breakpoints": {
+      "xs": 0,
+      "sm": 360,
+      "md": 600,
+      "lg": 840,
+      "xl": 1200,
+      "notes": "Mobile-first. Adjust grids/columns per breakpoint."
+    },
+    "zIndex": {
+      "base": 0,
+      "raised": 1,
+      "appBar": 10,
+      "fab": 20,
+      "dialog": 30,
+      "snackbar": 40,
+      "tooltip": 50
+    },
+    "icons": {
+      "sizes_dp": {
+        "sm": 16,
+        "md": 24,
+        "lg": 32,
+        "xl": 40
+      },
+      "stroke_px": {
+        "regular": 1.5,
+        "bold": 2
+      }
+    },
+    "borders": {
+      "widths_px": {
+        "thin": 1,
+        "regular": 1.5,
+        "thick": 2
+      },
+      "focus_ring_px": 2
+    },
+    "links": {
+      "color": "{themes.light.palette.info}",
+      "visited": "#6A48C5",
+      "hover_decoration": "underline"
+    },
+    "dataviz": {
+      "categorical": [
+        "#1C5FD4",
+        "#E68900",
+        "#2E7D32",
+        "#C2185B",
+        "#6D4C41",
+        "#00897B",
+        "#5E35B1",
+        "#546E7A"
+      ],
+      "neutral": [
+        "#0F141A",
+        "#5B6673",
+        "#B9C2CC",
+        "#E6EAF0"
+      ],
+      "notes": "Ensure adjacent series meet non-text contrast ≥3:1; check text labels against background with AA/AAA as appropriate."
+    },
+    "motion": {
+      "durations_ms": {
+        "fast": 120,
+        "standard": 200,
+        "slow": 300
+      },
+      "easings": {
+        "standard": "cubic-bezier(0.2, 0, 0, 1)",
+        "emphasized": "cubic-bezier(0.2, 0, 0, 1)",
+        "decelerate": "cubic-bezier(0, 0, 0, 1)",
+        "accelerate": "cubic-bezier(0.3, 0, 1, 1)"
+      }
+    },
+    "layout": {
+      "grid": {
+        "columns": 12,
+        "gutter_px": {
+          "xs": 16,
+          "sm": 16,
+          "md": 24,
+          "lg": 24,
+          "xl": 24
+        }
+      },
+      "section": {
+        "padding_y_px": {
+          "sm": 32,
+          "md": 48,
+          "lg": 64
+        }
+      }
+    },
+    "navigation": {
+      "indicator": {
+        "height_px": 3,
+        "radius_px": 3,
+        "color_role": "primary"
+      }
+    },
+    "progress_route": {
+      "height_px": 3,
+      "bar_color_role": "primary",
+      "track_color_role": "surface-variant"
+    },
+    "dialog": {
+      "backdrop": {
+        "color_role": "scrim",
+        "opacity": 0.4,
+        "blur_px": 8
+      },
+      "motion": {
+        "open_duration_ms": 160,
+        "close_duration_ms": 120,
+        "easing": "standard"
+      }
+    },
+    "image_hover": {
+      "scale": 1.03,
+      "overlay_color_role": "primary",
+      "overlay_opacity": 0.06
+    },
+    "a11y": {
+      "min_target_size_px": 24,
+      "focus_ring": {
+        "min_outline_px": 2,
+        "contrast_ratio_min": "3:1"
+      }
+    },
+    "skeleton": {
+      "bg_color_role": "surface-variant",
+      "highlight_opacity": 0.1,
+      "radius": "sm",
+      "shimmer_duration_ms": 1200
+    }
+  },
+  "themes": {
+    "light": {
+      "palette": {
+        "primary": "#E68900",
+        "on-primary": "#FFFFFF",
+        "primary-container": "#FFE5BF",
+        "on-primary-container": "#4A2A00",
+        "secondary": "#2A3A4A",
+        "on-secondary": "#FFFFFF",
+        "secondary-container": "#E6EDF6",
+        "on-secondary-container": "#1E2A38",
+        "tertiary": "#2E7D32",
+        "on-tertiary": "#FFFFFF",
+        "tertiary-container": "#D6ECD8",
+        "on-tertiary-container": "#0E3D16",
+        "error": "#B3261E",
+        "on-error": "#FFFFFF",
+        "error-container": "#F9DEDC",
+        "on-error-container": "#410E0B",
+        "warning": "#A05A00",
+        "on-warning": "#FFFFFF",
+        "info": "#1C5FD4",
+        "on-info": "#FFFFFF",
+        "success": "#2E7D32",
+        "on-success": "#FFFFFF",
+        "background": "#FFFFFF",
+        "on-background": "#0F141A",
+        "surface": "#FFFFFF",
+        "on-surface": "#0F141A",
+        "surface-variant": "#F6F7F9",
+        "on-surface-variant": "#5B6673",
+        "inverse-surface": "#2A3A4A",
+        "inverse-on-surface": "#E9EDF2",
+        "inverse-primary": "#7A4500",
+        "outline": "#D8DCE3",
+        "outline-variant": "#C5CCD6",
+        "shadow": "#000000",
+        "scrim": "rgba(0,0,0,0.32)"
+      },
+      "components": {
+        "app-bar": {
+          "container-color": "{themes.light.palette.surface}",
+          "title-color": "{themes.light.palette.on-surface}",
+          "elevation": "level2"
+        },
+        "navigation-bar": {
+          "container-color": "{themes.light.palette.surface}",
+          "active-color": "{themes.light.palette.primary}",
+          "inactive-color": "#8A96A3",
+          "elevation": "level1"
+        },
+        "button": {
+          "shape": "md",
+          "padding_y": 12,
+          "padding_x": 16,
+          "contained": {
+            "bg": "{themes.light.palette.primary}",
+            "fg": "{themes.light.palette.on-primary}",
+            "hover-layer": "rgba(0,0,0,{global.states.opacity.hover})",
+            "disabled_bg": "rgba(0,0,0,{global.states.opacity.disabled_container})",
+            "disabled_fg": "rgba(0,0,0,{global.states.opacity.disabled_content})"
+          },
+          "tonal": {
+            "bg": "{themes.light.palette.secondary-container}",
+            "fg": "{themes.light.palette.on-secondary-container}"
+          },
+          "outlined": {
+            "fg": "{themes.light.palette.secondary}",
+            "border": "1px solid {themes.light.palette.outline}"
+          },
+          "text": {
+            "fg": "{themes.light.palette.secondary}"
+          }
+        },
+        "chip": {
+          "container": "{themes.light.palette.secondary-container}",
+          "label": "{themes.light.palette.on-secondary-container}",
+          "selected_container": "{themes.light.palette.primary-container}",
+          "selected_label": "{themes.light.palette.on-primary-container}"
+        },
+        "card": {
+          "container": "{themes.light.palette.surface}",
+          "fg": "{themes.light.palette.on-surface}",
+          "elevation": "level1",
+          "radius": "md"
+        },
+        "text-field": {
+          "bg": "{themes.light.palette.surface}",
+          "fg": "{themes.light.palette.on-surface}",
+          "placeholder": "#8A96A3",
+          "border_default": "{themes.light.palette.outline}",
+          "border_focused": "{themes.light.palette.primary}"
+        },
+        "fab": {
+          "bg": "{themes.light.palette.primary}",
+          "fg": "{themes.light.palette.on-primary}",
+          "radius": "xl",
+          "elevation": "level3"
+        },
+        "snackbar": {
+          "bg": "#2B333B",
+          "fg": "#FFFFFF",
+          "action": "{themes.light.palette.primary}"
+        },
+        "dialog": {
+          "bg": "{themes.light.palette.surface}",
+          "fg": "{themes.light.palette.on-surface}",
+          "elevation": "level4",
+          "radius": "lg"
+        }
+      }
+    },
+    "dark": {
+      "palette": {
+        "primary": "#FFC04D",
+        "on-primary": "#1E1200",
+        "primary-container": "#5C3B00",
+        "on-primary-container": "#FFE5BF",
+        "secondary": "#A9B4C2",
+        "on-secondary": "#10161C",
+        "secondary-container": "#273341",
+        "on-secondary-container": "#E6EDF6",
+        "tertiary": "#7CD389",
+        "on-tertiary": "#07210E",
+        "tertiary-container": "#234E2A",
+        "on-tertiary-container": "#D6ECD8",
+        "error": "#F2B8B5",
+        "on-error": "#601410",
+        "error-container": "#8C1D18",
+        "on-error-container": "#F9DEDC",
+        "warning": "#FFB65C",
+        "on-warning": "#1B0F00",
+        "info": "#86B4FF",
+        "on-info": "#0A1933",
+        "success": "#8AD69A",
+        "on-success": "#061A0C",
+        "background": "#0F141A",
+        "on-background": "#E9EDF2",
+        "surface": "#0F141A",
+        "on-surface": "#E9EDF2",
+        "surface-variant": "#17202A",
+        "on-surface-variant": "#B9C2CC",
+        "inverse-surface": "#E9EDF2",
+        "inverse-on-surface": "#131A20",
+        "inverse-primary": "#E68900",
+        "outline": "#3B4754",
+        "outline-variant": "#2A3541",
+        "shadow": "#000000",
+        "scrim": "rgba(0,0,0,0.48)"
+      },
+      "components": {
+        "app-bar": {
+          "container-color": "{themes.dark.palette.surface}",
+          "title-color": "{themes.dark.palette.on-surface}",
+          "elevation": "level2"
+        },
+        "navigation-bar": {
+          "container-color": "{themes.dark.palette.surface}",
+          "active-color": "{themes.dark.palette.primary}",
+          "inactive-color": "#9AA6B2",
+          "elevation": "level1"
+        },
+        "button": {
+          "shape": "md",
+          "padding_y": 12,
+          "padding_x": 16,
+          "contained": {
+            "bg": "{themes.dark.palette.primary}",
+            "fg": "{themes.dark.palette.on-primary}"
+          },
+          "tonal": {
+            "bg": "{themes.dark.palette.secondary-container}",
+            "fg": "{themes.dark.palette.on-secondary-container}"
+          },
+          "outlined": {
+            "fg": "{themes.dark.palette.secondary}",
+            "border": "1px solid {themes.dark.palette.outline}"
+          },
+          "text": {
+            "fg": "{themes.dark.palette.secondary}"
+          }
+        },
+        "chip": {
+          "container": "{themes.dark.palette.secondary-container}",
+          "label": "{themes.dark.palette.on-secondary-container}",
+          "selected_container": "{themes.dark.palette.primary-container}",
+          "selected_label": "{themes.dark.palette.on-primary-container}"
+        },
+        "card": {
+          "container": "{themes.dark.palette.surface}",
+          "fg": "{themes.dark.palette.on-surface}",
+          "elevation": "level1",
+          "radius": "md"
+        },
+        "text-field": {
+          "bg": "{themes.dark.palette.surface}",
+          "fg": "{themes.dark.palette.on-surface}",
+          "placeholder": "#9AA6B2",
+          "border_default": "{themes.dark.palette.outline}",
+          "border_focused": "{themes.dark.palette.primary}"
+        },
+        "fab": {
+          "bg": "{themes.dark.palette.primary}",
+          "fg": "{themes.dark.palette.on-primary}",
+          "radius": "xl",
+          "elevation": "level3"
+        },
+        "snackbar": {
+          "bg": "#0F141A",
+          "fg": "#E9EDF2",
+          "action": "{themes.dark.palette.primary}"
+        },
+        "dialog": {
+          "bg": "{themes.dark.palette.surface}",
+          "fg": "{themes.dark.palette.on-surface}",
+          "elevation": "level4",
+          "radius": "lg"
+        }
+      }
+    },
+    "light_hc": {
+      "inherits": "light",
+      "overrides": {
+        "palette": {
+          "on-surface": "#0A0A0A",
+          "surface-variant": "#F3F4F6",
+          "outline": "#B3BBC6",
+          "outline-variant": "#A5AEBA",
+          "on-primary": "#0A0A0A"
+        }
+      }
+    },
+    "dark_hc": {
+      "inherits": "dark",
+      "overrides": {
+        "palette": {
+          "on-surface": "#FAFAFA",
+          "surface-variant": "#141A20",
+          "outline": "#495665",
+          "outline-variant": "#3B4754",
+          "on-primary": "#0D0D0D"
+        }
+      }
+    }
+  },
+  "usage": {
+    "roles": "Apply Material 3 color roles: primary/secondary/tertiary for actions & emphasis, surfaces for content, semantic for feedback.",
+    "screen_allocation": {
+      "base_surfaces": [
+        "background",
+        "surface",
+        "surface-variant"
+      ],
+      "support_elements": [
+        "secondary",
+        "secondary-container",
+        "on-surface-variant",
+        "outline"
+      ],
+      "accent_elements": [
+        "primary",
+        "primary-container",
+        "inverse-primary"
+      ]
+    },
+    "component_mapping": {
+      "primary_actions": [
+        "button.contained",
+        "fab",
+        "active nav items",
+        "progress highlights"
+      ],
+      "secondary_emphasis": [
+        "app bars",
+        "section headers",
+        "tabs",
+        "chips",
+        "outlined buttons"
+      ],
+      "semantic_feedback": {
+        "error": "destructive & errors",
+        "warning": "caution",
+        "success": "confirmations",
+        "info": "non-blocking info"
+      }
+    },
+    "contrast_notes": "Validate all text/containers with WebAIM Contrast Checker. Minimum AA ratios: 4.5:1 normal text, 3:1 large text; non-text UI ≥ 3:1."
+  },
+  "platform": {
+    "web": {
+      "layout": {
+        "container": {
+          "max_width_px": {
+            "sm": 640,
+            "md": 768,
+            "lg": 1024,
+            "xl": 1280,
+            "2xl": 1536
+          },
+          "padding_x_px": {
+            "sm": 16,
+            "md": 24,
+            "lg": 32
+          }
+        },
+        "safe_area": {
+          "top": "env(safe-area-inset-top)",
+          "bottom": "env(safe-area-inset-bottom)"
+        }
+      },
+      "scrollbar": {
+        "width": "thin",
+        "thumb_color_role": "outline-variant",
+        "track_color_role": "surface-variant",
+        "radius_px": 8
+      },
+      "scroll_snap": {
+        "cards": {
+          "type": "x mandatory",
+          "align": "start",
+          "stop": "always"
+        }
+      },
+      "header": {
+        "height_px": 64,
+        "elevation_level": "level2"
+      },
+      "footer": {
+        "height_px": 64,
+        "elevation_level": "level1"
+      },
+      "modes": {
+        "high_contrast_pref_media": "(forced-colors: active)"
+      },
+      "progress_route": {
+        "indeterminate_duration_ms": 800
+      }
+    },
+    "mobile": {
+      "a11y": {
+        "touch_target_min_dp": 48,
+        "touch_target_min_pt": 44
+      },
+      "layout": {
+        "safe_area": {
+          "library": "react-native-safe-area-context",
+          "notes": "Use SafeAreaView or useSafeAreaInsets for iOS/Android insets"
+        },
+        "header": {
+          "height_dp": 56
+        },
+        "footer": {
+          "height_dp": 56
+        }
+      },
+      "haptics": {
+        "impact": {
+          "light": "impactLight",
+          "medium": "impactMedium",
+          "heavy": "impactHeavy",
+          "soft": "impactSoft",
+          "rigid": "impactRigid"
+        },
+        "notification": {
+          "success": "notificationSuccess",
+          "warning": "notificationWarning",
+          "error": "notificationError"
+        }
+      },
+      "system_bars": {
+        "status_bar": {
+          "style": "auto",
+          "translucent": true,
+          "background_color_role": "surface"
+        },
+        "navigation_bar": {
+          "bg_color_role": "surface",
+          "light_icons": false
+        }
+      }
+    }
+  }
+}
