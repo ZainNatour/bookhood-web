@@ -1,26 +1,223 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: light;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-inter);
+  --color-primary: var(--sys-color-primary);
+  --color-on-primary: var(--sys-color-on-primary);
+  --color-primary-container: var(--sys-color-primary-container);
+  --color-on-primary-container: var(--sys-color-on-primary-container);
+  --color-secondary: var(--sys-color-secondary);
+  --color-on-secondary: var(--sys-color-on-secondary);
+  --color-secondary-container: var(--sys-color-secondary-container);
+  --color-on-secondary-container: var(--sys-color-on-secondary-container);
+  --color-background: var(--sys-color-background);
+  --color-on-background: var(--sys-color-on-background);
+  --color-surface: var(--sys-color-surface);
+  --color-on-surface: var(--sys-color-on-surface);
+  --color-surface-variant: var(--sys-color-surface-variant);
+  --color-on-surface-variant: var(--sys-color-on-surface-variant);
+  --color-outline: var(--sys-color-outline);
+  --color-outline-variant: var(--sys-color-outline-variant);
+  --color-inverse-surface: var(--sys-color-inverse-surface);
+  --color-inverse-on-surface: var(--sys-color-inverse-on-surface);
+  --color-inverse-primary: var(--sys-color-inverse-primary);
+  --color-shadow: var(--sys-color-shadow);
+  --color-scrim: var(--sys-color-scrim);
+  --color-success: var(--sys-color-success);
+  --color-on-success: var(--sys-color-on-success);
+  --color-warning: var(--sys-color-warning);
+  --color-on-warning: var(--sys-color-on-warning);
+  --color-info: var(--sys-color-info);
+  --color-on-info: var(--sys-color-on-info);
+  --spacing-0: 0rem;
+  --spacing-1: 0.125rem;
+  --spacing-2: 0.25rem;
+  --spacing-3: 0.375rem;
+  --spacing-4: 0.5rem;
+  --spacing-5: 0.625rem;
+  --spacing-6: 0.75rem;
+  --spacing-7: 1rem;
+  --spacing-8: 1.25rem;
+  --spacing-9: 1.5rem;
+  --spacing-10: 2rem;
+  --spacing-11: 2.5rem;
+  --spacing-12: 3rem;
+  --spacing-13: 3.5rem;
+  --spacing-14: 4rem;
+  --radius-xs: 0.25rem;
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-pill: 62.4375rem;
+  --container-max-sm: 40rem;
+  --container-max-md: 48rem;
+  --container-max-lg: 64rem;
+  --container-max-xl: 80rem;
+  --container-max-2xl: 96rem;
+  --container-padding-sm: 1rem;
+  --container-padding-md: 1.5rem;
+  --container-padding-lg: 2rem;
+  --easing-standard: cubic-bezier(0.2, 0, 0, 1);
+  --easing-emphasized: cubic-bezier(0.2, 0, 0, 1);
+  --easing-decelerate: cubic-bezier(0, 0, 0, 1);
+  --easing-accelerate: cubic-bezier(0.3, 0, 1, 1);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root {
+  --sys-color-primary: #E68900;
+  --sys-color-on-primary: #FFFFFF;
+  --sys-color-primary-container: #FFE5BF;
+  --sys-color-on-primary-container: #4A2A00;
+  --sys-color-secondary: #2A3A4A;
+  --sys-color-on-secondary: #FFFFFF;
+  --sys-color-secondary-container: #E6EDF6;
+  --sys-color-on-secondary-container: #1E2A38;
+  --sys-color-background: #FFFFFF;
+  --sys-color-on-background: #0F141A;
+  --sys-color-surface: #FFFFFF;
+  --sys-color-on-surface: #0F141A;
+  --sys-color-surface-variant: #F6F7F9;
+  --sys-color-on-surface-variant: #5B6673;
+  --sys-color-outline: #D8DCE3;
+  --sys-color-outline-variant: #C5CCD6;
+  --sys-color-inverse-surface: #2A3A4A;
+  --sys-color-inverse-on-surface: #E9EDF2;
+  --sys-color-inverse-primary: #7A4500;
+  --sys-color-shadow: #000000;
+  --sys-color-scrim: rgba(0, 0, 0, 0.32);
+  --sys-color-success: #2E7D32;
+  --sys-color-on-success: #FFFFFF;
+  --sys-color-warning: #A05A00;
+  --sys-color-on-warning: #FFFFFF;
+  --sys-color-info: #1C5FD4;
+  --sys-color-on-info: #FFFFFF;
+}
+
+.dark {
+  color-scheme: dark;
+  --sys-color-primary: #FFC04D;
+  --sys-color-on-primary: #1E1200;
+  --sys-color-primary-container: #5C3B00;
+  --sys-color-on-primary-container: #FFE5BF;
+  --sys-color-secondary: #A9B4C2;
+  --sys-color-on-secondary: #10161C;
+  --sys-color-secondary-container: #273341;
+  --sys-color-on-secondary-container: #E6EDF6;
+  --sys-color-background: #0F141A;
+  --sys-color-on-background: #E9EDF2;
+  --sys-color-surface: #0F141A;
+  --sys-color-on-surface: #E9EDF2;
+  --sys-color-surface-variant: #17202A;
+  --sys-color-on-surface-variant: #B9C2CC;
+  --sys-color-outline: #3B4754;
+  --sys-color-outline-variant: #2A3541;
+  --sys-color-inverse-surface: #E9EDF2;
+  --sys-color-inverse-on-surface: #131A20;
+  --sys-color-inverse-primary: #E68900;
+  --sys-color-shadow: #000000;
+  --sys-color-scrim: rgba(0, 0, 0, 0.48);
+  --sys-color-success: #8AD69A;
+  --sys-color-on-success: #061A0C;
+  --sys-color-warning: #FFB65C;
+  --sys-color-on-warning: #1B0F00;
+  --sys-color-info: #86B4FF;
+  --sys-color-on-info: #0A1933;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+  margin: 0;
+  background-color: var(--color-background);
+  color: var(--color-on-background);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.0125rem;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+::selection {
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
+}
+
+@keyframes gallery-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes reviews-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@utility display-large {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  line-height: 2.5rem;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+@utility headline-medium {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+@utility title-medium {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  line-height: 1.375rem;
+  font-weight: 600;
+  letter-spacing: 0.1px;
+}
+
+@utility body-large {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.5rem;
+  font-weight: 400;
+  letter-spacing: 0.2px;
+}
+
+@utility body-medium {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 400;
+  letter-spacing: 0.2px;
+}
+
+@utility label-medium {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  line-height: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
 }

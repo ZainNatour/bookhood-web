@@ -175,7 +175,106 @@ Accessibility is part of styling. Ensure all components:
 
 ---
 
-## 11. Performance and Maintainability
+## 11. Cursor & Interaction States Playbook
+
+**Why:** Cursors and state visuals communicate affordances before a user clicks. They must be consistent, accessible, and token-driven.
+
+### 11.1 Cursor rules (token-driven)
+Use the cursor tokens in `global.cursors.map` and `global.cursors.rules`:
+
+- **Links & buttons:** `cursor-pointer` (never rely on color only).  
+- **Inputs & selectable text:** `cursor-text`.  
+- **Disabled interactive elements:** add `aria-disabled="true"` or `disabled` and `cursor-not-allowed`; do **not** attach click handlers.  
+- **Draggable regions:** default `cursor-grab`, switch to `cursor-grabbing` while dragging.  
+- **Movable canvases/maps:** `cursor-move`.  
+- **Resizable edges/handles:** `ns-resize`, `ew-resize`, `nesw-resize`, `nwse-resize`, etc.  
+- **Zoomable media:** `zoom-in` / `zoom-out`.  
+- **Loading:** show **`progress`** when the UI remains responsive; show **`wait`** only for blocking operations longer than a moment.  
+Map these via Tailwind classes (e.g., `cursor-pointer`) or component props. The source of truth is the token map, not ad-hoc values. See MDN for supported values. :contentReference[oaicite:0]{index=0}
+
+### 11.2 State model (hover, focus, pressed, selected, disabled)
+Follow Material 3 interaction states (hover, focus, pressed, selected, disabled). Use your tokenized opacities and focus ring. Combine states (e.g., focused + selected) as needed, but avoid conflicting visuals. :contentReference[oaicite:1]{index=1}
+
+- **Focus:** Use `:focus-visible` and the tokenized focus ring (`global.states.focus_ring`). Do **not** remove focus indicators.  
+- **Pressed:** Apply `global.states.opacity.pressed` on press down; keep for ≥80ms for perceptibility.  
+- **Hover:** Treat as a hint only; never the sole indicator of interactivity.
+
+### 11.3 Hover/focus content (tooltips, menus, popovers)
+When content appears on hover or focus, ensure it is:
+- **Dismissible** (Esc key or clear close control),
+- **Hoverable** (pointer can move over it without it disappearing),
+- **Persistent** (stays until dismissed or focus/hover moves away).  
+Implement per WCAG 2.2 SC 1.4.13. :contentReference[oaicite:2]{index=2}
+
+### 11.4 Semantics first
+Prefer semantic elements:
+- Use `<a href>` for links, `<button>` for actions, proper inputs for form controls. If you must create custom widgets, follow ARIA Authoring Practices (roles, focus, keyboard). :contentReference[oaicite:3]{index=3}
+
+### 11.5 Pointer/target accessibility
+- Maintain minimum target sizes (≥24×24 CSS px) and spacing per a11y guidance.  
+- Pointer interactions must have keyboard equivalents (no drag-only actions). :contentReference[oaicite:4]{index=4}
+
+### 11.6 Implementation checklist
+- **Tokens:** Use `global.cursors` + `interaction_states` for all interactive components.  
+- **Tailwind:** apply `cursor-*` utilities from tokens; avoid hard-coding.  
+- **Shadcn:** set default cursor per variant/state (e.g., disabled → `not-allowed`).  
+- **Keyboard:** verify focus order and `:focus-visible` ring.  
+- **WCAG 2.2:** test hover/focus content for dismissible/hoverable/persistent.
+
+> Reference: MDN `cursor`, WCAG 2.2 (SC 1.4.13), Material 3 states, and WAI-ARIA APG. :contentReference[oaicite:5]{index=5}
+
+---
+
+## 12. Layout & Alignment Playbook
+
+**Purpose.** Keep key UI parts aligned and predictable when text length varies (e.g., testimonial quotes). These are best-practice rules the agent should apply by default.
+
+### A) Pick the right layout tool
+- **One axis (stack with header/body/footer):** use **Flexbox**; `display:flex; flex-direction:column;` enables easy vertical distribution. :contentReference[oaicite:1]{index=1}
+- **Two axes / equal rows & columns:** use **CSS Grid** and let items **stretch**; on the grid container set `align-items: stretch`. :contentReference[oaicite:2]{index=2}
+
+### B) Pin important regions (don’t let footers “float”)
+- Structure cards **header → body → spacer → footer**.  
+  - Flex: put `margin-top:auto` on the spacer or footer.  
+  - Grid: keep the card as a grid/flex and align the footer to the end.  
+  This prevents the author/CTA block from drifting when the body text grows. :contentReference[oaicite:3]{index=3}
+- Avoid absolute positioning for routine alignment; it harms responsive reflow. Ensure layouts reflow without two-direction scrolling. :contentReference[oaicite:4]{index=4}
+
+### C) Make sibling cards the same visual height
+- On the **row container** (grid or flex-wrap), use **stretch** alignment.  
+- On each **card**, use `height:100%` and a sensible `min-height` (responsive) so very short content doesn’t collapse. Prefer layout stretch over hard-coded fixed heights. :contentReference[oaicite:5]{index=5}
+
+### D) Control variable-length text (without breaking a11y)
+- Clamp long blurbs (quotes/descriptions) so footers align:  
+  - Prefer `line-clamp` (progressively enhance; check support). For single-line cases use `text-overflow: ellipsis`. :contentReference[oaicite:6]{index=6}
+- **Never clamp primary labels** (e.g., names). Clamp **secondary meta** (e.g., location) instead.
+
+### E) Responsive rhythm & spacing
+- Scale spacing or gaps with `clamp()` (e.g., `gap: clamp(12px, 2vw, 24px)`) to keep density consistent across viewports. :contentReference[oaicite:7]{index=7}
+- Start mobile-first; add columns at larger breakpoints via Grid/Flex rather than ad-hoc one-off rules. :contentReference[oaicite:8]{index=8}
+
+### F) Accessibility guardrails to always apply
+- **Reflow:** content must work at 320 CSS px without horizontal scroll (WCAG 2.2 **1.4.10 Reflow**). :contentReference[oaicite:9]{index=9}
+- **Custom widgets:** if you build non-native interactive patterns (menus, listboxes, etc.), follow **WAI-ARIA APG** for roles, keyboard and focus. :contentReference[oaicite:10]{index=10}
+
+### G) Canonical card recipe (use for testimonials/reviews)
+- Container: grid/list with `align-items: stretch` so all cards are equal height. :contentReference[oaicite:11]{index=11}
+- Inside each card:  
+  1) header (e.g., stars),  
+  2) body text **clamped** (4–6 lines by breakpoint),  
+  3) spacer (`mt-auto` in Flex),  
+  4) footer (author name **not clamped**; location 1-line clamp if needed). :contentReference[oaicite:12]{index=12}
+
+### H) Quick QA checklist (agents)
+- [ ] Footers (author/CTA) align along a common baseline within each row.  
+- [ ] Quotes are clamped; they never push footers off-card. :contentReference[oaicite:13]{index=13}  
+- [ ] Row uses stretch; every card is equal visual height. :contentReference[oaicite:14]{index=14}  
+- [ ] Layout passes 320-px **Reflow** (no horizontal scrolling). :contentReference[oaicite:15]{index=15}  
+- [ ] Any custom widget matches APG keyboard & focus patterns. :contentReference[oaicite:16]{index=16}
+
+---
+
+## 13. Performance and Maintainability
 
 - **Purge CSS automatically:** Tailwind’s Just‑in‑Time (JIT) engine removes unused styles automatically, keeping your bundle small. Make sure `content` in `tailwind.config.ts` includes all files with classes (e.g., `src/**/*.tsx`).
 - **Avoid class bloat:** Even though classes are cheap, aim to keep markup concise by grouping related classes logically and avoiding redundant classes. Do not use `@apply` in this project, but create small helper components instead.
@@ -184,7 +283,7 @@ Accessibility is part of styling. Ensure all components:
 
 ---
 
-## 12. Tailwind Plugins
+## 14. Tailwind Plugins
 
 Leverage Tailwind’s first‑party plugins to extend utility classes:
 

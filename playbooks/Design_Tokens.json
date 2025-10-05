@@ -348,7 +348,78 @@
       "highlight_opacity": 0.1,
       "radius": "sm",
       "shimmer_duration_ms": 1200
-    }
+    },
+    "cursors": {
+  "map": {
+    "default": "default",
+    "text": "text",
+    "pointer": "pointer",
+    "notAllowed": "not-allowed",
+    "move": "move",
+    "grab": "grab",
+    "grabbing": "grabbing",
+    "resize": {
+      "ns": "ns-resize",
+      "ew": "ew-resize",
+      "nesw": "nesw-resize",
+      "nwse": "nwse-resize",
+      "col": "col-resize",
+      "row": "row-resize"
+    },
+    "zoomIn": "zoom-in",
+    "zoomOut": "zoom-out",
+    "progress": "progress",
+    "wait": "wait",
+    "help": "help",
+    "alias": "alias",
+    "copy": "copy"
+  },
+  "rules": {
+    "links": "pointer",
+    "buttons": "pointer",
+    "iconButtons": "pointer",
+    "textInputs": "text",
+    "selectableText": "text",
+    "draggable": "grab",
+    "dragging": "grabbing",
+    "disabled": "notAllowed",
+    "resizableNS": "ns",
+    "resizableEW": "ew",
+    "loadingShort": "progress",
+    "loadingBlocking": "wait",
+    "zoomTargetsIn": "zoomIn",
+    "zoomTargetsOut": "zoomOut",
+    "movable": "move",
+    "helpTargets": "help"
+  },
+  "notes": "Use semantic HTML first; cursor changes confirm affordances but must not be the only cue."
+},
+"interaction_states": {
+  "hover": {
+    "enabled": true,
+    "min_visibility_ms": 80
+  },
+  "focus": {
+    "use_focus_visible": true,
+    "ring_from_tokens": true
+  },
+  "pressed": {
+    "use_opacity_role": "pressed",
+    "min_duration_ms": 80
+  },
+  "selected": { "enabled": true },
+  "disabled": {
+    "opacity_role": "disabled_container",
+    "cursor_rule": "notAllowed",
+    "interactive_blocked": true
+  },
+  "hover_focus_content": {
+    "dismissible_via_escape": true,
+    "hoverable": true,
+    "persistent_until_dismiss_or_blur": true
+  }
+}
+
   },
   "themes": {
     "light": {
