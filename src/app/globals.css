@@ -97,6 +97,11 @@
   --sys-color-on-warning: #FFFFFF;
   --sys-color-info: #1C5FD4;
   --sys-color-on-info: #FFFFFF;
+  --shadow-level1: 0 1px 2px rgba(0, 0, 0, 0.08);
+  --shadow-level2: 0 2px 6px rgba(0, 0, 0, 0.10);
+  --shadow-level3: 0 6px 12px rgba(0, 0, 0, 0.12);
+  --shadow-level4: 0 8px 16px rgba(0, 0, 0, 0.14);
+  --shadow-level5: 0 12px 24px rgba(0, 0, 0, 0.16);
 }
 
 .dark {
@@ -155,22 +160,41 @@ img {
   color: var(--color-on-primary);
 }
 
-@keyframes gallery-scroll {
-  0% {
+@keyframes marquee-x {
+  from {
     transform: translateX(0);
   }
-  100% {
-    transform: translateX(-50%);
+  to {
+    transform: translateX(var(--marquee-distance));
   }
 }
 
-@keyframes reviews-scroll {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
+@utility animate-marquee {
+  animation: marquee-x var(--marquee-duration, 48s) linear infinite;
+}
+
+@utility elevation-level1 {
+  box-shadow: var(--shadow-level1);
+}
+
+@utility elevation-level2 {
+  box-shadow: var(--shadow-level2);
+}
+
+@utility elevation-level3 {
+  box-shadow: var(--shadow-level3);
+}
+
+@utility text-success {
+  color: var(--sys-color-success);
+}
+
+@utility border-success {
+  border-color: var(--sys-color-success);
+}
+
+@utility bg-success-soft {
+  background-color: color-mix(in srgb, var(--sys-color-success) 12%, transparent);
 }
 
 @utility display-large {
