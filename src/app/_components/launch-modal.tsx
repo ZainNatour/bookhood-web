@@ -1,6 +1,9 @@
 "use client";
 
+import type { FormEvent } from "react";
 import { useEffect, useMemo, useRef, useState } from "react";
+
+import { subscribeToLaunchList } from "@/lib/launch-list";
 
 import { PrimaryCtaButton } from "./primary-cta-button";
 
@@ -26,7 +29,8 @@ type LaunchModalProps = {
 
 export function LaunchModal({ open, onClose }: LaunchModalProps) {
   const [email, setEmail] = useState("");
-  const [status, setStatus] = useState<"idle" | "success">("idle");
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [error, setError] = useState<string | null>(null);
   const inputRef = useRef<HTMLInputElement | null>(null);
   const dialogRef = useRef<HTMLDivElement | null>(null);
   const lastFocusedRef = useRef<HTMLElement | null>(null);
@@ -35,6 +39,7 @@ export function LaunchModal({ open, onClose }: LaunchModalProps) {
     if (!open) {
       setStatus("idle");
       setEmail("");
+      setError(null);
       document.body.style.removeProperty("overflow");
       lastFocusedRef.current?.focus();
       return undefined;
@@ -83,15 +88,33 @@ export function LaunchModal({ open, onClose }: LaunchModalProps) {
     };
   }, [open, onClose]);
 
-  const isSubmitDisabled = useMemo(() => email.trim().length === 0, [email]);
+  const isSubmitDisabled = useMemo(
+    () => email.trim().length === 0 || status === "loading",
+    [email, status],
+  );
 
   if (!open) {
     return null;
   }
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setStatus("success");
+    if (status === "loading") {
+      return;
+    }
+
+    setStatus("loading");
+    setError(null);
+
+    try {
+      await subscribeToLaunchList(email);
+      setStatus("success");
+      setEmail("");
+    } catch (submissionError) {
+      console.error("Failed to register launch list email", submissionError);
+      setStatus("error");
+      setError("Something went wrong. Please try again in a moment.");
+    }
   };
 
   return (
@@ -165,7 +188,9 @@ export function LaunchModal({ open, onClose }: LaunchModalProps) {
           </div>
 
           <PrimaryCtaButton type="submit" disabled={isSubmitDisabled}>
-            Notify me and add me to the launch list
+            {status === "loading"
+              ? "Adding you to the launch list..."
+              : "Notify me and add me to the launch list"}
           </PrimaryCtaButton>
         </form>
 
@@ -178,6 +203,17 @@ export function LaunchModal({ open, onClose }: LaunchModalProps) {
             <p className="body-medium text-on-surface-variant">
               Expect a confirmation email soon. {"We\u0027ll share the download links and bonus codes as soon as stores approve us."}
             </p>
+          </div>
+        ) : null}
+
+        {status === "error" && error ? (
+          <div
+            className="mt-[var(--spacing-6)] rounded-[var(--radius-lg)] border border-outline bg-surface-variant p-[var(--spacing-7)]"
+            aria-live="assertive"
+            role="alert"
+          >
+            <p className="title-medium text-on-surface">We couldn&apos;t save your email</p>
+            <p className="body-medium text-on-surface-variant">{error}</p>
           </div>
         ) : null}
       </div>
