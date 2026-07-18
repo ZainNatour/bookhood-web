@@ -1,0 +1,5 @@
+Contact: mailto:security@bookhood.app
+Contact: mailto:support@bookhood.app
+Preferred-Languages: en, ru
+Policy: https://bookhood.app/privacy
+Expires: 2027-05-27T00:00:00Z

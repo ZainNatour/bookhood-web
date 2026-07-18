@@ -6,6 +6,15 @@ type LaunchFooterProps = {
 };
 
 export function LaunchFooter({ onJoinClick }: LaunchFooterProps) {
+  const legalLinks = [
+    { href: "/privacy", label: "Privacy" },
+    { href: "/terms", label: "Terms" },
+    { href: "/support", label: "Support" },
+    { href: "/account-deletion", label: "Account deletion" },
+    { href: "/community-guidelines", label: "Community guidelines" },
+    { href: "/content-policy", label: "Content policy" },
+  ] as const;
+
   return (
     <footer className="bg-secondary-container py-[var(--spacing-12)]">
       <Container>
@@ -35,6 +44,20 @@ export function LaunchFooter({ onJoinClick }: LaunchFooterProps) {
             {" "}
             and we will reply within one business day.
           </p>
+          <nav aria-label="Legal and support" className="mt-[var(--spacing-9)]">
+            <ul className="flex flex-wrap gap-x-[var(--spacing-7)] gap-y-[var(--spacing-4)]">
+              {legalLinks.map((link) => (
+                <li key={link.href}>
+                  <a
+                    href={link.href}
+                    className="body-medium text-on-surface-variant underline decoration-outline underline-offset-[var(--spacing-4)] hover:text-primary hover:decoration-primary"
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
         </div>
       </Container>
     </footer>

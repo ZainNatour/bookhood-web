@@ -7,6 +7,8 @@
     "build": "next build --turbopack",
     "start": "next start",
     "lint": "eslint",
+    "check:production-readiness": "node scripts/check-web-production-readiness.mjs",
+    "check:release-candidate": "node scripts/check-web-production-readiness.mjs && eslint && next build --turbopack",
     "test": "node -e \"console.log('No tests configured for bookhood-web')\""
   },
   "dependencies": {

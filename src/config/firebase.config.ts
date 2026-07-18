@@ -24,6 +24,9 @@ const fallbackFirebaseConfig: FirebaseConfig = {
   measurementId: "G-M9TY33C73N",
 };
 
+const releaseTarget = process.env.BOOKHOOD_WEB_RELEASE_TARGET ?? "local";
+const allowFallbackConfig = releaseTarget !== "public";
+
 const readEnvVar = (key: string) => {
   const value = process.env[key];
 
@@ -34,18 +37,31 @@ const readEnvVar = (key: string) => {
   return undefined;
 };
 
+const readFirebaseEnvVar = (key: string, fallback: string | undefined) => {
+  const value = readEnvVar(key);
+  if (value) {
+    return value;
+  }
+  if (allowFallbackConfig) {
+    return fallback;
+  }
+  return undefined;
+};
+
 const firebaseConfig = firebaseConfigSchema.parse({
-  apiKey: readEnvVar("NEXT_PUBLIC_FIREBASE_API_KEY") ?? fallbackFirebaseConfig.apiKey,
+  apiKey: readFirebaseEnvVar("NEXT_PUBLIC_FIREBASE_API_KEY", fallbackFirebaseConfig.apiKey),
   authDomain:
-    readEnvVar("NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN") ?? fallbackFirebaseConfig.authDomain,
+    readFirebaseEnvVar("NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN", fallbackFirebaseConfig.authDomain),
   projectId:
-    readEnvVar("NEXT_PUBLIC_FIREBASE_PROJECT_ID") ?? fallbackFirebaseConfig.projectId,
+    readFirebaseEnvVar("NEXT_PUBLIC_FIREBASE_PROJECT_ID", fallbackFirebaseConfig.projectId),
   storageBucket:
-    readEnvVar("NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET") ?? fallbackFirebaseConfig.storageBucket,
+    readFirebaseEnvVar("NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET", fallbackFirebaseConfig.storageBucket),
   messagingSenderId:
-    readEnvVar("NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID") ??
-    fallbackFirebaseConfig.messagingSenderId,
-  appId: readEnvVar("NEXT_PUBLIC_FIREBASE_APP_ID") ?? fallbackFirebaseConfig.appId,
+    readFirebaseEnvVar(
+      "NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID",
+      fallbackFirebaseConfig.messagingSenderId,
+    ),
+  appId: readFirebaseEnvVar("NEXT_PUBLIC_FIREBASE_APP_ID", fallbackFirebaseConfig.appId),
   measurementId:
     readEnvVar("NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID") ??
     fallbackFirebaseConfig.measurementId,
